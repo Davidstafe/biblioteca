@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+    <title>Registro de Libros</title>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Registro de Libros</h2>
+        <input type="text" id="titulo" placeholder="Título del libro">
+        <input type="text" id="autor" placeholder="Autor del libro">
+        <button onclick="agregarLibro()">Agregar</button>
+    </div>
+
+    <div class="lista-container">
+        <h3>Lista de Libros</h3>
+        <div id="listarLibros" class="libros-container"></div>  <!-- Se corrigió el ID aquí -->
+    </div>
+
+    <script>
+        function agregarLibro() {
+            let titulo = document.getElementById("titulo").value;
+            let autor = document.getElementById("autor").value;
+            if (titulo && autor) {
+                fetch("libros/php/agregar.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: `titulo=${titulo}&autor=${autor}`
+                })
+                .then(response => response.text())
+                .then(() => cargarLibros());
+            } else {
+                alert("Por favor, ingrese tanto el título como el autor");
+            }
+        }
+
+        function cargarLibros() {
+            fetch("libros/php/listar.php")
+                .then(response => response.json())
+                .then(data => {
+                    let lista = document.getElementById("listarLibros");
+                    lista.innerHTML = ""; // Limpiar la lista antes de agregar los nuevos libros
+
+                    // Agregar los libros a la lista
+                    data.forEach(libro => {
+                        let row = `<div class="libro-item">
+                            <h4>${libro.titulo}</h4>
+                            <p><strong>Autor:</strong> ${libro.autor}</p>
+                        </div>`;
+                        lista.innerHTML += row; // Añadir cada libro a la lista
+                    });
+                })
+                .catch(error => console.log("Error al cargar los libros: ", error));
+        }
+
+        document.addEventListener("DOMContentLoaded", cargarLibros); // Cargar los libros al cargar la página
+    </script>
+
+    <footer class="footer">
+        <p>Ruiz Moreno David Elias @derechosReservados</p>
+    </footer>
+</body>
+</html>
