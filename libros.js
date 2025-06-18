@@ -3,8 +3,6 @@ const libros = [
     { titulo: "El Principito", autor: "Antoine de Saint-Exupéry" },
     { titulo: "Cien Años de Soledad", autor: "Gabriel García Márquez" },
     { titulo: "1984", autor: "George Orwell" },
-    { titulo: "El principito", autor: "Antoine de Saint-Exupéry" },
-    { titulo: "Cien años de soledad", autor: "Gabriel García Márquez" },
     { titulo: "El Proceso", autor: "Franz Kafka" },
     { titulo: "Confesiones", autor: "San Agustin" },
     { titulo: "Ética", autor: "Benedictus de Spinoza" },
@@ -127,6 +125,9 @@ const libros = [
     { titulo: "Amor líquido", autor: "Zygmunt Bauman" },
     { titulo: "Memoria del fuego", autor: "Eduardo Galeano" },
     { titulo: "Don Quijote de la Mancha", autor: "Miguel de Cervantes" },
+    { titulo: "El mito de Sísifo", autor: "Albert Camus" },
+    { titulo: "Deja de ser tú", autor: "Joe Dispenza" },
+ 
       
     
     // Agregá más libros acá
