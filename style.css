@@ -30,17 +30,31 @@ button:hover {
 }
 
 .libros-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    padding: 20px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Ajuste para pantallas medianas (como tablets o laptops chicas) */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .libros-container {
+        padding: 20px 60px;
+        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
 }
 
 .card {
     background: rgb(91, 172, 197);
     padding: 15px;
     border-radius: 10px;
-    width: 300px;
+    width: 100%; /* se adapta al tamaño del grid */
+    max-width: 250px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: left;
 }
